@@ -1,0 +1,1 @@
+## A simple NodeJS-MongoDB user auth boiler plate 
