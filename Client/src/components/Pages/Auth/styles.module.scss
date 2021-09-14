@@ -1,0 +1,63 @@
+@import "../../../styles/_variables";
+
+.auth {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  &Header {
+    margin-bottom: 25px;
+    text-align: center;
+    &Title {
+      font-size: 24px;
+      font-weight: 500;
+    }
+  }
+
+  &Button {
+    background: $white;
+    border: none;
+    margin-right: 1px;
+    outline: none;
+    padding: 10px 15px;
+    &Active {
+      background: $blue;
+      color: $white;
+    }
+  }
+  &Form {
+    &Wrapper {
+      border: 1px solid $blue;
+      padding: 15px;
+      border-radius: 4px;
+      width: clamp(240px, 50%, 100%);
+      box-shadow: 2px 2px 8px $softgray;
+    }
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    & > label {
+      color: $softgray;
+      margin-bottom: 5px;
+    }
+    & > input:not(:last-child) {
+      margin-bottom: 15px;
+      border: 1px solid lightgray;
+      transition: 0.3s ease all;
+      height: 20px;
+      border-radius: 4px;
+      &:focus {
+        border: 1px solid $softgray;
+      }
+    }
+    &Submit {
+      background: $blue;
+      color: $white;
+      padding: 10px;
+      margin-top: 15px;
+      border: none;
+      border-radius: 4px;
+    }
+  }
+}

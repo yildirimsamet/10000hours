@@ -16,7 +16,7 @@ const UserSchema = new Schema({
   },
   categories:{
     type:Array,
-    default:[1]
+    default:[]
   },
   createdAt: {
     type: Date,

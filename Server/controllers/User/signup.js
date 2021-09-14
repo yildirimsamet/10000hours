@@ -19,7 +19,7 @@ const signup=async(req,res)=>{
                     email,
                     password: hashedPass,
                 });
-                res.json({success:true,data:"User created successfully."})
+                res.json({success:true,message:"User created successfully."})
            } catch (err) {
                res.json({success:false,message:err.message})
            }

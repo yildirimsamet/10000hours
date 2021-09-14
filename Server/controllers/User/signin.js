@@ -21,7 +21,7 @@ const signin = async (req, res) => {
               expiresIn: "7d",
             }
           );
-          return res.json({ success: true, data: {email:user.email,token} });
+          return res.json({ success: true, data: {email:user.email,categories:user.categories,token},message:"Successfully logged in." });
         } else {
           return res.json({ success: false, message: "Wrong password." });
         }
