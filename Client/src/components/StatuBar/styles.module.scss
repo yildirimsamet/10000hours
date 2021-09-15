@@ -1,0 +1,51 @@
+@import "../../styles/_variables";
+.red2 {
+  background: $red1;
+}
+.red1 {
+  background: $red2;
+}
+.green0 {
+  background: $green0;
+}
+.green1 {
+  background: $green1;
+}
+.green2 {
+  background: $green2;
+}
+.statuBar {
+  background: $lightgray;
+  width: 100%;
+  height: 30px;
+  border-radius: 4px;
+  &Progress {
+    margin: 2px 0;
+    height: inherit;
+    display: flex;
+    justify-content: center;
+    font-size: 12px;
+    align-items: center;
+    color: $white;
+    border-radius: inherit;
+  }
+  &Percentage {
+    width: 100%;
+    position: relative;
+    & > span {
+      font-size: 12px;
+    }
+    & > span:first-child {
+      position: absolute;
+      left: -8px;
+    }
+    & > span:last-child {
+      position: absolute;
+      right: -15px;
+    }
+    &Mid {
+      position: absolute;
+      transform: translateX(-50%);
+    }
+  }
+}

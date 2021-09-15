@@ -5,7 +5,6 @@ const getUser=async(req,res)=>{
     let { authorization } = req.headers;
     authorization = authorization.replace("Bearer ", "");
     const token_id = await jwt.verify(authorization,process.env.JWT_SECRET)._id;
-    console.log(token_id)
     dbConnect();
     const findedUser = await User.findOne({_id:token_id})
     if(findedUser){

@@ -1,0 +1,50 @@
+@import '../../styles/_variables';
+.categoryList{
+    padding: 0 15px;
+    &Header{
+        font-weight: 500;
+        padding: 0 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .modal{
+        position: fixed;
+        background: $white;
+        border: 1px solid $softgray;
+        color: $white;
+        width: 76%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        padding: 15px;
+        display: flex;
+        flex-direction: column;
+        color: black;
+        & button{
+            background: $blue;
+            border: none;
+            border-radius: 4px;
+            padding: 8px 0;
+            color: $white;
+        }
+        &Title{
+            margin-bottom: 15px;
+        }
+        &> label, &>input {
+            margin-bottom: 10px;
+        }
+        &>input{
+            border:1px solid black;
+            border-radius: 0;
+            min-height: 20px;
+        }
+        &Close{
+            position: absolute;
+            right: 8px;
+            top: 8px;
+            color: $red;
+        }
+
+    }
+}

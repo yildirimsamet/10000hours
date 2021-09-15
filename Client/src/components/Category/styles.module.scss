@@ -1,0 +1,67 @@
+@import "../../styles/_variables";
+
+.category {
+  border: 1px solid $softgray;
+  padding: 15px;
+  padding-bottom: 25px;
+  border-radius: 5px;
+  margin-top: 15px;
+  position: relative;
+  background: $white;
+  
+  &Header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  &Menu {
+    position: relative;
+    border: 1px solid $softgray;
+    border-top: none;
+    padding: 15px;
+    transition: .1s ease all;
+    display: none;
+    &Active{
+        display: block;
+    }
+    &Header {
+      margin-bottom: 10px;
+      &Button {
+        border: none;
+        outline: none;
+        padding: 5px;
+        background: $white;
+        &Active {
+          border-bottom: 2px solid $blue;
+        }
+      }
+      &Button:first-child {
+        margin-right: 5px;
+      }
+    }
+    &Form{
+        &Input{
+            width: 70%;
+            margin-right: 5px;
+        }
+        &Button{
+            background: $blue;
+            color: $white;
+            border:none;
+            border-radius: 4px;
+            padding: 3px 5px;
+        }
+    }
+    &Remove{
+      position: absolute;
+      right: 5px;
+      top: 5px;
+      background: $red;
+      color: $white;
+      font-size: 12px;
+      padding: 4px;
+      border-radius: 4px;
+    }
+  }
+}

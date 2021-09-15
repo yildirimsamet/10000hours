@@ -1,7 +1,6 @@
 @import "../../../styles/_variables";
 
 .auth {
-  min-height: 100vh;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -32,7 +31,7 @@
       padding: 15px;
       border-radius: 4px;
       width: clamp(240px, 50%, 100%);
-      box-shadow: 2px 2px 8px $softgray;
+      box-shadow: 2px 2px 18px lightgrey;
     }
     margin-top: 25px;
     display: flex;

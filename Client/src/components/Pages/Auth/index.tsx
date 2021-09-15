@@ -4,7 +4,10 @@ import styles from "./styles.module.scss";
 import classnames from "classnames";
 import { FcLock, FcUnlock } from "react-icons/fc";
 import notify from "../../../utils/notify";
+import Cookies from "js-cookie";
+import { useUser } from "../../../contexts/UserContext";
 const Auth = () => {
+  const { setUser } = useUser();
   const [userInfo, setUserInfo] = useState({
     email: "",
     password: "",
@@ -17,15 +20,28 @@ const Auth = () => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserInfo({ ...userInfo, [e.target.name]: e.target.value });
   };
-  const handleSubmit = async (e:React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const END_POINT =
       section === sections[0].id ? "/user/signin" : "/user/signup";
     try {
       const { data } = await axios.post(END_POINT, userInfo);
-     if(data){
-       notify({success:data.success,message:data.message})
-     }
+      const user = data?.data;
+      if (data) {
+        notify({ success: data.success, message: data.message });
+        if(section===sections[1].id){
+          setSection(sections[0].id);
+        setUserInfo({email:"",password:""})
+        }
+      }
+      if (user) {
+        localStorage.setItem(
+          "user",
+          JSON.stringify({ email: user.email, categories: user.categories })
+        );
+        Cookies.set("token", user.token, { expires: 7 });
+        setUser({ email: user.email, categories: user.categories });
+      }
     } catch (error) {
       notify({ success: false, message: "Bilinmeyen bir hata oluştu." });
     }
@@ -60,6 +76,7 @@ const Auth = () => {
             id="authEmail"
             name="email"
             type="email"
+            value={userInfo.email}
             onChange={handleChange}
           />
           <label htmlFor="authPassword">Password</label>
@@ -67,6 +84,7 @@ const Auth = () => {
             id="authPassword"
             name="password"
             type="password"
+            value={userInfo.password}
             onChange={handleChange}
           />
           <input
