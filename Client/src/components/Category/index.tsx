@@ -144,7 +144,7 @@ const Category: React.FC<ICategory> = ({ name, hours }) => {
                 onClick={() => setCurrentSection(section)}
                 className={classnames(
                   styles.categoryMenuHeaderButton,
-                  currentSection == section &&
+                  currentSection === section &&
                     styles.categoryMenuHeaderButtonActive
                 )}
               >
