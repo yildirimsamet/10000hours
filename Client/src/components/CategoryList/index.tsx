@@ -7,10 +7,12 @@ import { myAxios as axios } from "../../utils/axios";
 import { getUserInfo } from "../../utils/getUserInfo";
 import notify from "../../utils/notify";
 import { getConfigForClient } from "../../utils/getConfigForClient";
+import Spinner from "../Spinner";
 
 const CategoryList = () => {
-  const { user ,setUser} = useUser();
+  const { user, setUser } = useUser();
   const { categories } = user;
+  const [loading, setLoading] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [modalInfo, setModalInfo] = useState({
     categoryName: "",
@@ -28,7 +30,11 @@ const CategoryList = () => {
     <div className={styles.categoryList}>
       <div className={styles.categoryListHeader}>
         <p>Categories</p>
-        <AiFillPlusCircle onClick={()=>setModalOpen(true)} size="24" color="green" />
+        <AiFillPlusCircle
+          onClick={() => setModalOpen(true)}
+          size="24"
+          color="green"
+        />
       </div>
       <div className={styles.categoryListCategories}>
         {categories &&
@@ -65,20 +71,39 @@ const CategoryList = () => {
             placeholder="Initial Hours"
             type="text"
           />
-          <button onClick={async() => {
-            if(modalInfo.categoryName){
-              try {
-                const {data}=await axios.post("/user/create-category",{name:modalInfo.categoryName,initialHours: +modalInfo.initialHours || 0},getConfigForClient())
-                if(data.success){
-                  recallUser();
-                  setModalOpen(false)
+          <button
+            onClick={async () => {
+              if (modalInfo.categoryName) {
+                try {
+                  const { data } = await axios.post(
+                    "/user/create-category",
+                    {
+                      name: modalInfo.categoryName,
+                      initialHours: +modalInfo.initialHours || 0,
+                    },
+                    getConfigForClient()
+                  );
+                  if (data.success) {
+                    recallUser();
+                    setModalOpen(false);
+                  }
+                  notify({
+                    success: data.success,
+                    message: data.message || "Category added successfully.",
+                  });
+                } catch (error) {
+                  notify({ success: false, message: "Something went wrong" });
+                } finally {
+                  setModalInfo({
+                    categoryName: "",
+                    initialHours: "",
+                  });
                 }
-                notify({success:data.success,message:data.message||"Category added successfully."})
-              } catch (error) {
-                notify({success:false,message:"Something went wrong"}) 
               }
-            }
-          }}>Submit</button>
+            }}
+          >
+            {loading === true ? <Spinner /> : "Submit"}
+          </button>
         </div>
       )}
     </div>
