@@ -35,15 +35,25 @@
             margin-bottom: 10px;
         }
         &>input{
-            border:1px solid black;
-            border-radius: 0;
-            min-height: 20px;
+            border: 1px solid lightgray;
+            transition: 0.3s ease all;
+            height: 20px;
+            border-radius: 4px;
         }
         &Close{
             position: absolute;
             right: 8px;
             top: 8px;
-            color: $red;
+            color: $white;
+            background: $red;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 14px;
         }
 
     }

@@ -28,17 +28,15 @@ const StatuBar: React.FC<IStatuBar> = ({ hours }) => {
         )}
       >
         {/* if percentage is too small we only show the hours */}
-        {hours>500&& (+percentage < 20 ? hours : hours + " Hours")}
+        {hours > 500 && (+percentage < 20 ? hours : hours + " Hours")}
       </span>
       <div className={styles.statuBarPercentage}>
-        <span>0%</span>
-       {hours>500&& <span
+        <span
           style={{ left: `${percentage}%` }}
           className={styles.statuBarPercentageMid}
         >
           {percentage + "%"}
-        </span>}
-        <span>100%</span>
+        </span>
       </div>
     </div>
   );

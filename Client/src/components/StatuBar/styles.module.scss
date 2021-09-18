@@ -34,15 +34,16 @@
     position: relative;
     & > span {
       font-size: 12px;
+      font-weight: 500;
     }
-    & > span:first-child {
-      position: absolute;
-      left: -8px;
-    }
-    & > span:last-child {
-      position: absolute;
-      right: -15px;
-    }
+    // & > span:first-child {
+    //   position: absolute;
+    //   left: -8px;
+    // }
+    // & > span:last-child {
+    //   position: absolute;
+    //   right: -15px;
+    // }
     &Mid {
       position: absolute;
       transform: translateX(-50%);

@@ -82,10 +82,12 @@ const Category: React.FC<ICategory> = ({ name, hours }) => {
                 setMenuOpen(false);
               }}
               size="24"
+              color="grey"
             />
           ) : (
             <BiMenuAltRight
               size="24"
+              color="grey"
               onClick={() => {
                 setUpdateHoursInput("");
                 setMenuOpen(true);
@@ -164,7 +166,7 @@ const Category: React.FC<ICategory> = ({ name, hours }) => {
             />
             <input
               className={styles.categoryMenuFormButton}
-              value={currentSection}
+              value={currentSection.toUpperCase()}
               type="submit"
             />
           </form>
