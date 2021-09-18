@@ -74,6 +74,7 @@ const CategoryList = () => {
           <button
             onClick={async () => {
               if (modalInfo.categoryName) {
+                setLoading(true);
                 try {
                   const { data } = await axios.post(
                     "/user/create-category",
@@ -98,6 +99,7 @@ const CategoryList = () => {
                     categoryName: "",
                     initialHours: "",
                   });
+                  setLoading(false)
                 }
               }
             }}
