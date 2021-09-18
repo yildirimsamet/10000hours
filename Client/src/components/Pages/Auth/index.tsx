@@ -6,8 +6,10 @@ import { FcLock, FcUnlock } from "react-icons/fc";
 import notify from "../../../utils/notify";
 import Cookies from "js-cookie";
 import { useUser } from "../../../contexts/UserContext";
+import Spinner from "../../Spinner";
 const Auth = () => {
   const { setUser } = useUser();
+  const [loading, setLoading] = useState(false);
   const [userInfo, setUserInfo] = useState({
     email: "",
     password: "",
@@ -25,13 +27,14 @@ const Auth = () => {
     const END_POINT =
       section === sections[0].id ? "/user/signin" : "/user/signup";
     try {
+      setLoading(true);
       const { data } = await axios.post(END_POINT, userInfo);
       const user = data?.data;
       if (data) {
         notify({ success: data.success, message: data.message });
-        if(section===sections[1].id){
+        if (section === sections[1].id) {
           setSection(sections[0].id);
-        setUserInfo({email:"",password:""})
+          setUserInfo({ email: "", password: "" });
         }
       }
       if (user) {
@@ -44,6 +47,8 @@ const Auth = () => {
       }
     } catch (error) {
       notify({ success: false, message: "Bilinmeyen bir hata oluştu." });
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -87,11 +92,10 @@ const Auth = () => {
             value={userInfo.password}
             onChange={handleChange}
           />
-          <input
-            value="Submit"
-            type="submit"
-            className={styles.authFormSubmit}
-          />
+
+          <button type="submit" className={styles.authFormSubmit}>
+            {loading ? <Spinner /> : "Submit"}
+          </button>
         </form>
       </div>
     </div>
